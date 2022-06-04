@@ -2,9 +2,8 @@
 // const shippingPrice = 15.0;
 
 window.addEventListener("load", () => {
-    localStorage.setItem("taxRate", taxRate);
-    localStorage.setItem("shippingPrice", shippingPrice);
-
+    // localStorage.setItem("taxRate", taxRate);
+    // localStorage.setItem("shippingPrice", shippingPrice);
     calculateCartTotal();
 });
 
@@ -19,31 +18,26 @@ productDiv.addEventListener("click", (event) => {
             event.target.nextElementSibling.innerText--;
 
             calculateProductAndCartTotal(event.target.parentElement.parentElement);
+
         } else {
             if (confirm("Product will be deleted?")) {
                 event.target.parentElement.parentElement.parentElement.remove();
 
                 calculateCartTotal();
             }
-        }
-        // console.log("minus button clicked");
-        
+        } 
+
     } else if (event.target.classList.contains("plus")) {
-        // console.log("plus button clicked");
         event.target.previousElementSibling.innerText++;
 
         calculateProductAndCartTotal(event.target.parentElement.parentElement);
+
     } else if (event.target.classList.contains("remove-product")) {
         if (confirm("Product will be deleted?")) {
              event.target.parentElement.parentElement.parentElement.remove();
         }
-        // console.log("remove button clicked");
        
-
         calculateCartTotal();
-    } else {
-        // console.log("other element is clicked");
-    }
 });
 
 
@@ -64,23 +58,25 @@ const calculateProductAndCartTotal = (productInfoDiv) => {
 //* calculate cart totals *//
 
 const calculateCartTotal = () => {
+    
     let productTotalPriceDivs = document.querySelectorAll(".product-line-price");
     let subtotal = 0;
-    productTotalPriceDivs.forEach((eachPrice) => {
+    productTotalPriceDivs.forEach(eachPrice => {
         subtotal += parseFloat(eachPrice.innerText);
     });
+
     let taxPrice = subtotal * localStorage.getItem("taxRate");
 
-let shippingPrice = (subtotal > 0 ?  parseFloat(localStorage.getItem("shippingPrice")) : 0);
+    let shippingPrice = (subtotal > 0 ?  parseFloat(localStorage.getItem("shippingPrice")) : 0);
 
-let cartTotal = subtotal + taxPrice + shippingPrice;
+    let cartTotal = subtotal + taxPrice + shippingPrice;
 
-document.querySelector("#cart-subtotal p:nth-child(2)").innerText = subtotal.toFixed(2);
+    document.querySelector("#cart-subtotal p:nth-child(2)").innerText = subtotal.toFixed(2);
 
-document.querySelector("#cart-tax p:nth-child(2)").innerText = taxPrice.toFixed(2);
+    document.querySelector("#cart-tax p:nth-child(2)").innerText = taxPrice.toFixed(2);
 
-document.querySelector("#cart-shipping p:nth-child(2)").innerText = shippingPrice;
+    document.querySelector("#cart-shipping p:nth-child(2)").innerText = shippingPrice.toFixed(2);
 
-document.querySelector("#cart-total p:nth-child(2").innerText = cartTotal.toFixed(2);
+    document.querySelector("#cart-total p:nth-child(2)").innerText = cartTotal.toFixed(2);
 }
 
