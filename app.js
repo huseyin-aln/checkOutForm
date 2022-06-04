@@ -1,9 +1,9 @@
-// const taxRate = 0.18;
-// const shippingPrice = 15.0;
+const taxRate = 0.18;
+const shippingPrice = 15.0;
 
 window.addEventListener("load", () => {
-    // localStorage.setItem("taxRate", taxRate);
-    // localStorage.setItem("shippingPrice", shippingPrice);
+    localStorage.setItem("taxRate", taxRate);
+    localStorage.setItem("shippingPrice", shippingPrice);
     calculateCartTotal();
 });
 
@@ -36,6 +36,7 @@ productDiv.addEventListener("click", (event) => {
              event.target.parentElement.parentElement.parentElement.remove();
         }
         calculateCartTotal();
+    }
 });
 
 
