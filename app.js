@@ -26,7 +26,6 @@ productDiv.addEventListener("click", (event) => {
                 calculateCartTotal();
             }
         } 
-
     } else if (event.target.classList.contains("plus")) {
         event.target.previousElementSibling.innerText++;
 
@@ -36,7 +35,6 @@ productDiv.addEventListener("click", (event) => {
         if (confirm("Product will be deleted?")) {
              event.target.parentElement.parentElement.parentElement.remove();
         }
-       
         calculateCartTotal();
 });
 
@@ -58,7 +56,7 @@ const calculateProductAndCartTotal = (productInfoDiv) => {
 //* calculate cart totals *//
 
 const calculateCartTotal = () => {
-    
+
     let productTotalPriceDivs = document.querySelectorAll(".product-line-price");
     let subtotal = 0;
     productTotalPriceDivs.forEach(eachPrice => {
@@ -78,5 +76,5 @@ const calculateCartTotal = () => {
     document.querySelector("#cart-shipping p:nth-child(2)").innerText = shippingPrice.toFixed(2);
 
     document.querySelector("#cart-total p:nth-child(2)").innerText = cartTotal.toFixed(2);
-}
+};
 
